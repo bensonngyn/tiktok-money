@@ -2,12 +2,12 @@ from gtts import gTTS
 from pydub import AudioSegment
 
 
-def text_to_speech(text: str, tts_audio_path: str) -> None:
+def text_to_speech(text: str, tts_audio_path: str, playback_speed: float = 1.2) -> None:
     """Convert text to speech and save as MP3."""
     tts = gTTS(text)
     tts.save(tts_audio_path)
     audio = AudioSegment.from_file(tts_audio_path)
-    sped_up_audio = audio.speedup(playback_speed=1.2)
+    sped_up_audio = audio.speedup(playback_speed=playback_speed)
     sped_up_audio.export(tts_audio_path, format="mp3")
 
 
